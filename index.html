@@ -35,7 +35,7 @@ border:1px solid #253247;
 overflow:hidden;
 display:flex;
 flex-direction:column;
-box-shadow:0 15px 30px -10px rgba(0,0,0,0.8);
+box-shadow:0 15px 30px -10px rgba(0,0,0,.8);
 transition:.25s;
 }
 
@@ -71,9 +71,9 @@ animation:liveBlink 1s infinite;
 }
 
 @keyframes liveBlink{
-0%{opacity:1;}
-50%{opacity:.3;}
-100%{opacity:1;}
+0%{opacity:1}
+50%{opacity:.3}
+100%{opacity:1}
 }
 
 .scheduled-badge{
@@ -115,9 +115,6 @@ pointer-events:none;
 -moz-user-select:none;
 -ms-user-select:none;
 user-select:none;
-}
-
-*{
 -webkit-tap-highlight-color:transparent;
 }
 
@@ -127,15 +124,13 @@ color:#9ca3af;
 margin-top:6px;
 }
 
-/* ===== TELEGRAM ===== */
+/* TELEGRAM */
 
 .social-links{
 display:flex;
 align-items:center;
 justify-content:center;
-gap:8px;
 margin-top:12px;
-flex-wrap:wrap;
 }
 
 .social-link{
@@ -152,7 +147,6 @@ font-weight:600;
 text-decoration:none;
 transition:all .25s;
 white-space:nowrap;
-font-family:'Poppins',sans-serif;
 }
 
 .social-link:hover{
@@ -160,39 +154,18 @@ background:#17253b;
 border-color:#3b82f6;
 color:#fff;
 transform:translateY(-2px);
-box-shadow:0 8px 20px -6px #1e3a8a60;
-}
-
-.social-link:active{
-transform:translateY(0) scale(.96);
 }
 
 .social-link svg{
 width:14px;
 height:14px;
-flex-shrink:0;
 }
 
 .social-link.tg-link svg{
 fill:#29b6f6;
 }
 
-@media(max-width:420px){
-
-.social-link{
-padding:6px 11px;
-font-size:11px;
-gap:5px;
-}
-
-.social-link svg{
-width:12px;
-height:12px;
-}
-
-}
-
-/* ===== TELEGRAM POPUP ===== */
+/* TELEGRAM POPUP */
 
 #tgOverlay{
 position:fixed;
@@ -205,7 +178,6 @@ align-items:center;
 justify-content:center;
 z-index:999999;
 padding:20px;
-animation:fadeInPopup .4s cubic-bezier(.25,.8,.25,1);
 }
 
 #tgOverlay.show{
@@ -219,27 +191,8 @@ background:linear-gradient(160deg,#121821,#0a0c0f);
 border:1px solid rgba(79,195,247,.15);
 border-radius:24px;
 padding:36px 28px 28px;
-box-shadow:
-0 40px 80px rgba(0,0,0,.8),
-0 0 60px rgba(79,195,247,.03);
+box-shadow:0 40px 80px rgba(0,0,0,.8);
 text-align:center;
-position:relative;
-overflow:hidden;
-}
-
-#tgCard::before{
-content:"";
-position:absolute;
-top:-50%;
-left:-50%;
-width:200%;
-height:200%;
-background:radial-gradient(
-circle at 30% 20%,
-rgba(79,195,247,.04),
-transparent 60%
-);
-pointer-events:none;
 }
 
 #tgIcon{
@@ -251,9 +204,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 background:linear-gradient(135deg,#2AABEE,#229ED9);
-box-shadow:0 0 40px rgba(42,171,238,.2);
-position:relative;
-z-index:1;
 }
 
 #tgIcon svg{
@@ -263,29 +213,21 @@ height:36px;
 
 #tgCard h2{
 margin:0 0 8px;
-font-size:clamp(1.3rem,2.5vw,1.8rem);
+font-size:1.6rem;
 font-weight:700;
 color:#fff;
-font-family:'Poppins',system-ui,sans-serif;
-position:relative;
-z-index:1;
-letter-spacing:-.01em;
 }
 
 #tgCard p{
 margin:0 0 24px;
 color:#8e9baf;
-font-size:clamp(.9rem,1.2vw,1.05rem);
+font-size:.95rem;
 line-height:1.6;
-position:relative;
-z-index:1;
 }
 
 .tgBtns{
 display:flex;
 gap:12px;
-position:relative;
-z-index:1;
 }
 
 .tgBtn{
@@ -293,23 +235,13 @@ flex:1;
 height:48px;
 border-radius:40px;
 font-weight:700;
-font-size:clamp(.85rem,1vw,1rem);
 cursor:pointer;
-transition:all .25s ease;
 border:none;
-font-family:'Poppins',sans-serif;
-letter-spacing:.01em;
 }
 
 #joinNow{
 background:linear-gradient(135deg,#4fc3f7,#2196f3);
 color:#fff;
-box-shadow:0 6px 24px rgba(79,195,247,.25);
-}
-
-#joinNow:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 32px rgba(79,195,247,.35);
 }
 
 #joinedBtn{
@@ -318,30 +250,10 @@ color:#8e9baf;
 border:1px solid rgba(255,255,255,.08);
 }
 
-#joinedBtn:hover{
-background:rgba(255,255,255,.08);
-color:#fff;
-}
-
-@keyframes fadeInPopup{
-
-from{
-opacity:0;
-transform:scale(.95) translateY(12px);
-}
-
-to{
-opacity:1;
-transform:scale(1) translateY(0);
-}
-
-}
-
 @media(max-width:480px){
 
 #tgCard{
 padding:24px 18px 20px;
-border-radius:20px;
 }
 
 #tgIcon{
@@ -349,23 +261,8 @@ width:60px;
 height:60px;
 }
 
-#tgIcon svg{
-width:30px;
-height:30px;
-}
-
 #tgCard h2{
 font-size:1.2rem;
-}
-
-#tgCard p{
-font-size:.85rem;
-margin-bottom:18px;
-}
-
-.tgBtn{
-height:42px;
-font-size:.8rem;
 }
 
 }
@@ -375,6 +272,7 @@ font-size:.8rem;
 </head>
 
 <body class="p-5 max-w-7xl mx-auto">
+
 
 <!-- HEADER -->
 
@@ -392,6 +290,7 @@ font-size:.8rem;
 FANCODE LIVE WEB
 </p>
 
+
 <!-- TELEGRAM ONLY -->
 
 <div class="social-links">
@@ -401,13 +300,11 @@ href="https://t.me/cricmatchstream"
 target="_blank"
 rel="noopener"
 class="social-link tg-link"
-title="@cricmatchstream"
 >
 
 <svg
 viewBox="0 0 24 24"
 fill="currentColor"
-aria-hidden="true"
 >
 
 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -442,8 +339,6 @@ class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
 <svg
 viewBox="0 0 24 24"
 fill="white"
-width="36"
-height="36"
 >
 
 <path d="M23.05 2.1L19.6 21.3c-.26 1.15-.94 1.43-1.9.9l-5.26-3.88-2.54 2.45c-.28.28-.52.52-1.06.52l.38-5.4L19.9 5.8c.46-.4-.1-.63-.72-.23L7.5 13.03l-5.24-1.64c-1.14-.36-1.16-1.14.24-1.68L21.6.9c.95-.36 1.78.23 1.45 1.2z"/>
@@ -462,11 +357,17 @@ Get match links &amp; live updates delivered straight to your phone.
 
 <div class="tgBtns">
 
-<button class="tgBtn" id="joinedBtn">
+<button
+class="tgBtn"
+id="joinedBtn"
+>
 Already Joined
 </button>
 
-<button class="tgBtn" id="joinNow">
+<button
+class="tgBtn"
+id="joinNow"
+>
 Join Now
 </button>
 
@@ -482,18 +383,26 @@ Join Now
 const DATA_URL =
 'https://raw.githubusercontent.com/kajju027/Fancode-Events-Json/refs/heads/main/fancode.json';
 
+
+/*
+ IMPORTANT:
+ Your existing fc-play.html expects:
+
+ fc-play.html?data=STREAM_URL
+*/
+
 const PLAYER_URL =
-'fc-play.html?streams=';
+'fc-play.html?data=';
+
 
 const container =
 document.getElementById("matches-container");
 
+
 let allMatches = [];
 
 
-/* ================================
-   LOAD MATCHES
-================================ */
+/* LOAD MATCHES */
 
 fetch(DATA_URL)
 
@@ -501,14 +410,14 @@ fetch(DATA_URL)
 
 .then(data => {
 
-allMatches = data.matches || [];
+allMatches =
+data.matches || [];
 
 container.innerHTML = "";
 
 
-/* LIVE MATCHES FIRST */
-
-const matches = allMatches.sort((a,b) => {
+const matches =
+allMatches.sort((a,b) => {
 
 const aLive =
 (a.status || "").toUpperCase() === "LIVE";
@@ -525,6 +434,7 @@ matches.forEach((m,index) => {
 
 const isLive =
 (m.status || "").toUpperCase() === "LIVE";
+
 
 const img =
 m.image ||
@@ -562,11 +472,11 @@ isLive
 <div class="p-5 flex flex-col flex-1">
 
 <h3 class="text-xl font-bold">
-${m.title || 'Match'}
+${m.title || "Match"}
 </h3>
 
 <div class="text-sm text-gray-400 mt-2">
-${m.tournament || ''}
+${m.tournament || ""}
 </div>
 
 <div class="match-time">
@@ -582,22 +492,29 @@ isLive
 onclick="openPlayer(${index})"
 class="watch-btn"
 >
+
 <i class="fas fa-play"></i>
 WATCH NOW
+
 </div>
 `
 
 : `
+
 <div class="watch-btn not-live">
+
 <i class="far fa-clock"></i>
 NOT LIVE
+
 </div>
+
 `
 }
 
 </div>
 
 `;
+
 
 container.appendChild(card);
 
@@ -614,9 +531,7 @@ container.innerHTML =
 });
 
 
-/* ================================
-   DATE FORMAT
-================================ */
+/* DATE */
 
 function formatDate(time){
 
@@ -643,7 +558,8 @@ yyyy
 ] = parts;
 
 
-hh = parseInt(hh,10);
+hh =
+parseInt(hh,10);
 
 
 if(
@@ -708,10 +624,12 @@ minute:"2-digit"
 }
 
 
-/* ================================
-   OPEN PLAYER DIRECTLY
-   NO QUALITY POPUP
-================================ */
+/*
+========================================
+OPEN PLAYER
+NO QUALITY POPUP
+========================================
+*/
 
 function openPlayer(index){
 
@@ -738,22 +656,77 @@ return;
 
 
 /*
-   Send ALL available qualities
-   to fc-play.html.
+ Quality priority:
 
-   The player can then select/change
-   quality while watching.
+ 1080p
+ 720p
+ 540p
+ 480p
+ 360p
+ 240p
 */
 
-const json =
-JSON.stringify(streams);
+const qualityOrder = [
+
+"1080p",
+"720p",
+"540p",
+"480p",
+"360p",
+"240p"
+
+];
+
+
+let selectedStream =
+null;
+
+
+/* SELECT HIGHEST AVAILABLE */
+
+for(
+const quality of qualityOrder
+){
+
+if(streams[quality]){
+
+selectedStream =
+streams[quality];
+
+break;
+
+}
+
+}
+
+
+/* FALLBACK */
+
+if(!selectedStream){
+
+selectedStream =
+Object.values(streams)[0];
+
+}
+
+
+if(!selectedStream){
+
+alert("Stream URL missing");
+
+return;
+
+}
+
+
+/*
+ Encode ONLY the selected
+ stream URL because the
+ existing player expects data=
+*/
 
 const encoded =
-btoa(
-unescape(
-encodeURIComponent(json)
-)
-);
+btoa(selectedStream);
 
 
 window.location.href =
@@ -763,9 +736,7 @@ encodeURIComponent(encoded);
 }
 
 
-/* ================================
-   TELEGRAM POPUP
-================================ */
+/* TELEGRAM POPUP */
 
 (function(){
 
@@ -793,7 +764,8 @@ tgOverlay.classList.add("show");
 
 document
 .getElementById("joinNow")
-.onclick = function(){
+.onclick =
+function(){
 
 window.open(
 "https://t.me/cricmatchstream",
@@ -809,14 +781,15 @@ closePopup();
 
 document
 .getElementById("joinedBtn")
-.onclick = function(){
+.onclick =
+function(){
 
 closePopup();
 
 };
 
 
-/* CLICK BACKDROP */
+/* BACKDROP */
 
 tgOverlay.addEventListener(
 "click",
