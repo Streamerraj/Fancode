@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>FANCODE LIVE</title>
+
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- YOUR MAIN CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- SHAKA PLAYER -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.0/shaka-player.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.6.0/controls.min.css">
+
+<style>
+
+html,body{
+margin:0;
+padding:0;
+background:#000;
+height:100%;
+width:100%;
+overflow:hidden;
+font-family:'Poppins',sans-serif;
+}
+
+.video-container{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+}
+
+.shaka-video-container{
+width:100%;
+height:100%;
+}
+
+video{
+width:100%;
+height:100%;
+object-fit:contain;
+background:#000;
+}
+
+.loading-overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+background:#000;
+color:#fff;
+z-index:2000;
+font-size:18px;
+}
+
+.spinner{
+border:4px solid rgba(255,255,255,.2);
+border-top:4px solid #3b82f6;
+border-radius:50%;
+width:40px;
+height:40px;
+animation:spin 1s linear infinite;
+margin-bottom:12px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="video-container">
+  <div class="shaka-video-container" data-shaka-player>
+    <video id="video" autoplay playsinline muted></video>
+    <div id="loading" class="loading-overlay">
+      <div class="spinner"></div>
+      Analyzing the video...
+    </div>
+  </div>
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const encoded = params.get("data");
+let streamUrl = encoded ? atob(encoded) : "";
+
+const video = document.getElementById("video");
+const loading = document.getElementById("loading");
+
+async function initPlayer(){
+
+  if(!streamUrl){
+    alert("Stream URL missing");
+    return;
+  }
+
+  try{
+
+    const player = new shaka.Player(video);
+    const container = document.querySelector(".shaka-video-container");
+    const ui = new shaka.ui.Overlay(player, container, video);
+
+    ui.configure({
+      controlPanelElements:[
+        'play_pause',
+        'mute',
+        'time_and_duration',
+        'spacer',
+        'quality',
+        'language',
+        'picture_in_picture',
+        'fullscreen',
+        'overflow_menu'
+      ],
+      addSeekBar:true
+    });
+
+    player.configure({
+      streaming:{
+        bufferingGoal:10,
+        rebufferingGoal:2,
+        bufferBehind:30
+      }
+    });
+
+    await player.load(streamUrl);
+
+    video.play().catch(()=>{
+      video.muted=true;
+      video.play();
+    });
+
+    video.addEventListener("playing",()=>{
+      loading.style.display="none";
+    });
+
+  }
+
+  catch(e){
+
+    console.log("Shaka error:",e);
+
+    video.src = streamUrl;
+    video.play();
+
+    video.addEventListener("playing",()=>{
+      loading.style.display="none";
+    });
+
+  }
+
+}
+
+document.addEventListener("DOMContentLoaded", initPlayer);
+
+</script>
+
+  <script async src="https://pl31358401.profitableratecpmnetwork.com/a3/81/41/a38141b4ff99f6ef8dbf9dc5f76bd86b.js"></script>
+
+</body>
+</html>
