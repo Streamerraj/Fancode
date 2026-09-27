@@ -1,0 +1,47 @@
+:root{
+  --bg:#07090d;
+  --panel:#11151b;
+  --panel2:#171c23;
+  --text:#f5f7fa;
+  --muted:#9aa3af;
+  --line:#242b35;
+  --accent:#16a3ff;
+  --live:#ff3b30;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+a{text-decoration:none;color:inherit}
+.topbar{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid var(--line);background:#0b0e13;position:sticky;top:0;z-index:10}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#08a5ff,#7357ff);display:grid;place-items:center;font-weight:900}
+.brand strong{display:block;font-size:18px}
+.brand span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.telegram{background:#168bd0;padding:10px 15px;border-radius:10px;font-weight:700;font-size:13px}
+main{width:min(1180px,92%);margin:auto}
+.hero{margin:28px 0 20px;padding:34px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 90% 10%,#15334b 0,#11151b 38%,#0d1117 100%)}
+.eyebrow{color:var(--accent);font-weight:800;letter-spacing:1.5px;font-size:12px}
+h1{font-size:clamp(28px,5vw,48px);margin:8px 0}
+.hero-text{color:var(--muted);margin:0}
+.filters{display:flex;gap:9px;overflow:auto;padding:5px 0 22px}
+.filter{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 18px;border-radius:999px;cursor:pointer;font-weight:700;white-space:nowrap}
+.filter.active{background:#eaf6ff;color:#087fc7;border-color:#8bd3ff}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title h2{margin:0;font-size:22px}
+.section-title span{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s}
+.card:hover{transform:translateY(-2px);border-color:#35404d}
+.card-top{height:130px;padding:16px;background:linear-gradient(135deg,#17212c,#0d1117);display:flex;align-items:flex-end;justify-content:space-between}
+.sport{font-size:12px;color:#c6ced8;text-transform:uppercase}
+.status{font-size:11px;font-weight:900;padding:6px 8px;border-radius:7px}
+.status.live{background:#38181a;color:#ff6e68}
+.status.upcoming{background:#1b2631;color:#72c8ff}
+.card-body{padding:15px}
+.title{font-weight:800;font-size:16px;line-height:1.35}
+.meta{color:var(--muted);font-size:12px;margin-top:8px}
+.watch{display:block;text-align:center;margin-top:14px;padding:11px;border-radius:10px;background:#168bd0;font-weight:800;font-size:13px}
+.watch.disabled{background:#252c35;color:#777;pointer-events:none}
+footer{text-align:center;color:#65707c;padding:40px 15px;font-size:12px}
+.empty{padding:35px;text-align:center;color:var(--muted);grid-column:1/-1;border:1px dashed var(--line);border-radius:15px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.topbar{padding:0 4%;height:64px}.brand strong{font-size:16px}.telegram{padding:9px 11px;font-size:12px}.hero{padding:24px;margin-top:18px}.grid{grid-template-columns:1fr}.card-top{height:115px}}

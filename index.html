@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cric Stream</title>
+  <meta name="description" content="Cric Stream - Live and upcoming sports">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <div class="brand-mark">CS</div>
+      <div>
+        <strong>Cric Stream</strong>
+        <span>Live Sports</span>
+      </div>
+    </a>
+    <a class="telegram" href="https://t.me/" target="_blank" rel="noopener">Join Telegram</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">LIVE SPORTS</p>
+        <h1>Watch your favourite events.</h1>
+        <p class="hero-text">A fast, mobile-friendly sports event dashboard.</p>
+      </div>
+    </section>
+
+    <nav class="filters" aria-label="Sports filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="cricket">Cricket</button>
+      <button class="filter" data-filter="football">Football</button>
+      <button class="filter" data-filter="tennis">Tennis</button>
+    </nav>
+
+    <section>
+      <div class="section-title">
+        <h2>Events</h2>
+        <span id="eventCount"></span>
+      </div>
+      <div id="events" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>© 2026 Cric Stream</footer>
+  <script src="script.js"></script>
+</body>
+</html>
