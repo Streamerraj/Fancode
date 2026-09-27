@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,144 +10,187 @@
 
 <title>@Cricmatchstream</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!-- HLS PLAYER -->
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
 <style>
 
 *{
+-webkit-tap-highlight-color:transparent;
 -webkit-user-select:none;
 -moz-user-select:none;
 -ms-user-select:none;
 user-select:none;
--webkit-tap-highlight-color:transparent;
 box-sizing:border-box;
 }
 
-html,
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
-padding:0;
-background:#0a0f1c;
+min-height:100vh;
+background:
+radial-gradient(circle at 50% -10%,#172554 0%,transparent 35%),
+radial-gradient(circle at 100% 30%,#0f1d38 0%,transparent 30%),
+#060b14;
 font-family:'Poppins',sans-serif;
 color:#edf2f7;
 }
 
-button{
-font-family:'Poppins',sans-serif;
-}
-
-/* =========================
-HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header{
 text-align:center;
-margin-top:20px;
-margin-bottom:32px;
+padding:32px 15px 25px;
 }
 
-.brand{
+.logo-box{
 display:inline-flex;
 align-items:center;
 justify-content:center;
-background:#131d2f;
-padding:12px 28px;
-border-radius:50px;
-border:1px solid rgba(59,130,246,.35);
+gap:12px;
+padding:13px 25px;
+border-radius:18px;
+background:linear-gradient(
+135deg,
+rgba(30,41,59,.95),
+rgba(15,23,42,.95)
+);
+border:1px solid rgba(96,165,250,.22);
+box-shadow:
+0 15px 40px rgba(0,0,0,.35),
+inset 0 1px rgba(255,255,255,.05);
 }
 
-.brand span{
-font-size:30px;
+.logo-dot{
+width:11px;
+height:11px;
+border-radius:50%;
+background:#ef4444;
+box-shadow:0 0 15px #ef4444;
+animation:pulseDot 1.5s infinite;
+}
+
+.logo-text{
+font-size:clamp(1.35rem,4vw,2rem);
 font-weight:800;
+letter-spacing:-.04em;
 color:#fff;
-letter-spacing:-.5px;
 }
 
 .subtitle{
-color:#6b7280;
-font-size:13px;
 margin-top:12px;
-letter-spacing:1px;
+font-size:12px;
+font-weight:600;
+letter-spacing:.22em;
+color:#64748b;
 }
 
-/* =========================
-TELEGRAM LINK
-========================= */
+/* ================= TELEGRAM ================= */
 
 .social-links{
 display:flex;
-align-items:center;
 justify-content:center;
-margin-top:12px;
+margin-top:17px;
 }
 
 .social-link{
 display:inline-flex;
 align-items:center;
 gap:7px;
-padding:7px 15px;
-background:#131d2f;
-border:1px solid #253247;
-border-radius:50px;
-color:#e5e7eb;
+padding:8px 16px;
+border-radius:999px;
+background:rgba(19,29,47,.8);
+border:1px solid rgba(42,171,238,.2);
+color:#dbeafe;
 font-size:12px;
 font-weight:600;
 text-decoration:none;
 transition:.25s;
+box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
 .social-link:hover{
-background:#17253b;
-border-color:#3b82f6;
 transform:translateY(-2px);
+background:#172a43;
+border-color:#2aabee;
+box-shadow:0 10px 30px rgba(42,171,238,.12);
 }
 
 .social-link svg{
-width:14px;
-height:14px;
+width:15px;
+height:15px;
+}
+
+.social-link.tg-link svg{
 fill:#29b6f6;
 }
 
-/* =========================
-MATCH GRID
-========================= */
+/* ================= MATCH GRID ================= */
 
 #matches-container{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
+max-width:1200px;
+margin:20px auto 50px;
 }
 
+/* ================= MATCH CARD ================= */
+
 .match-tile{
-background:#131d2f;
-border-radius:28px;
-border:1px solid #253247;
+position:relative;
+background:
+linear-gradient(
+145deg,
+rgba(19,29,47,.98),
+rgba(10,17,29,.98)
+);
+border-radius:24px;
+border:1px solid #1e293b;
 overflow:hidden;
 display:flex;
 flex-direction:column;
-box-shadow:0 15px 30px -10px rgba(0,0,0,.8);
-transition:.25s;
+box-shadow:
+0 18px 45px rgba(0,0,0,.35),
+inset 0 1px rgba(255,255,255,.025);
+transition:
+transform .3s ease,
+border-color .3s ease,
+box-shadow .3s ease;
 }
 
 .match-tile:hover{
-background:#17253b;
-border-color:#3b82f6;
-transform:translateY(-4px);
-box-shadow:0 25px 40px -8px #1e3a8a40;
+transform:translateY(-6px);
+border-color:rgba(59,130,246,.65);
+box-shadow:
+0 25px 55px rgba(0,0,0,.5),
+0 0 30px rgba(37,99,235,.08);
 }
 
+/* ================= IMAGE ================= */
+
 .img-wrapper{
-height:210px;
-overflow:hidden;
+height:215px;
 position:relative;
+overflow:hidden;
+background:#0f172a;
+}
+
+.img-wrapper::after{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+to top,
+rgba(5,10,18,.75),
+transparent 55%
+);
+pointer-events:none;
 }
 
 .match-img{
@@ -154,38 +198,48 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
+transition:transform .5s ease;
+}
+
+.match-tile:hover .match-img{
+transform:scale(1.05);
+}
+
+/* ================= BADGES ================= */
+
+.live-badge,
+.scheduled-badge{
+position:absolute;
+top:13px;
+left:13px;
+z-index:2;
+display:inline-flex;
+align-items:center;
+gap:6px;
+padding:6px 11px;
+border-radius:999px;
+font-size:10px;
+font-weight:700;
+letter-spacing:.04em;
+backdrop-filter:blur(10px);
 }
 
 .live-badge{
-position:absolute;
-top:12px;
-left:12px;
-background:#b91c1c;
-color:white;
-font-size:12px;
-padding:4px 10px;
-border-radius:20px;
-animation:liveBlink 1s infinite;
-}
-
-@keyframes liveBlink{
-0%{opacity:1}
-50%{opacity:.3}
-100%{opacity:1}
+background:rgba(185,28,28,.92);
+color:#fff;
+box-shadow:0 5px 20px rgba(185,28,28,.25);
+animation:liveBlink 1.5s infinite;
 }
 
 .scheduled-badge{
-position:absolute;
-top:12px;
-left:12px;
-background:rgba(0,0,0,.65);
-color:white;
-font-size:12px;
-padding:4px 10px;
-border-radius:20px;
+background:rgba(15,23,42,.82);
+border:1px solid rgba(148,163,184,.2);
+color:#cbd5e1;
 }
 
-.match-info{
+/* ================= CARD CONTENT ================= */
+
+.match-content{
 padding:20px;
 display:flex;
 flex-direction:column;
@@ -193,237 +247,185 @@ flex:1;
 }
 
 .match-title{
-font-size:19px;
+font-size:18px;
+line-height:1.4;
 font-weight:700;
+color:#f8fafc;
+margin:0;
 }
 
 .tournament{
-font-size:14px;
-color:#9ca3af;
+font-size:12px;
+color:#64748b;
 margin-top:7px;
 }
 
 .match-time{
-font-size:13px;
-color:#9ca3af;
-margin-top:6px;
+display:flex;
+align-items:center;
+gap:6px;
+font-size:12px;
+color:#94a3b8;
+margin-top:8px;
 }
 
+/* ================= WATCH BUTTON ================= */
+
 .watch-btn{
-background:#2563eb;
-border-radius:50px;
+width:100%;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+border:1px solid rgba(96,165,250,.25);
+border-radius:13px;
 padding:12px;
-font-weight:600;
+font-size:13px;
+font-weight:700;
 display:flex;
 align-items:center;
 justify-content:center;
 gap:7px;
-margin-top:15px;
+margin-top:16px;
 cursor:pointer;
-transition:.2s;
+color:#fff;
+transition:.25s;
+box-shadow:0 8px 22px rgba(37,99,235,.16);
 }
 
 .watch-btn:hover{
-background:#1d4ed8;
-transform:translateY(-1px);
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+transform:translateY(-2px);
+box-shadow:0 12px 28px rgba(37,99,235,.25);
+}
+
+.watch-btn:active{
+transform:scale(.98);
 }
 
 .not-live{
-background:#334155;
+background:#172235;
+border-color:#243248;
+color:#64748b;
 cursor:not-allowed;
 pointer-events:none;
+box-shadow:none;
 }
 
-/* =========================
-PLAYER OVERLAY
-========================= */
+/* ================= QUALITY MODAL ================= */
 
-#playerOverlay{
+#qualityModal{
 position:fixed;
 inset:0;
-background:#000;
-display:none;
-z-index:99998;
-overflow-y:auto;
-}
-
-#playerOverlay.show{
-display:block;
-}
-
-.player-header{
-height:60px;
-background:#0b1220;
-display:flex;
-align-items:center;
-gap:15px;
-padding:0 16px;
-border-bottom:1px solid #253247;
-position:sticky;
-top:0;
-z-index:5;
-}
-
-.back-btn{
-width:42px;
-height:42px;
-border:none;
-border-radius:50%;
-background:#172235;
-color:white;
-font-size:19px;
-cursor:pointer;
+background:rgba(0,0,0,.78);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
 display:flex;
 align-items:center;
 justify-content:center;
-}
-
-.back-btn:hover{
-background:#2563eb;
-}
-
-.player-title{
-font-size:16px;
-font-weight:600;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
-}
-
-.player-area{
-width:100%;
-max-width:1100px;
-margin:0 auto;
+z-index:9999;
 padding:20px;
 }
 
-/* VIDEO */
+#qualityModal.hidden{
+display:none;
+}
 
-.video-box{
+#qualityModal .modal-content{
 width:100%;
-background:#000;
-border-radius:16px;
-overflow:hidden;
-position:relative;
-box-shadow:0 20px 60px rgba(0,0,0,.6);
+max-width:380px;
+background:
+linear-gradient(
+145deg,
+#111827,
+#080d16
+);
+border:1px solid rgba(96,165,250,.16);
+border-radius:22px;
+padding:24px;
+text-align:center;
+box-shadow:
+0 30px 80px rgba(0,0,0,.8),
+0 0 40px rgba(37,99,235,.05);
 }
 
-#videoPlayer{
-width:100%;
-height:auto;
-min-height:220px;
-max-height:75vh;
-background:#000;
-display:block;
+#qualityModal h2{
+font-size:20px;
+font-weight:700;
+margin:0 0 18px;
+color:#f8fafc;
 }
 
-/* =========================
-PLAYER QUALITY
-========================= */
-
-.quality-panel{
-margin-top:18px;
-background:#111827;
-border:1px solid #253247;
-border-radius:18px;
-padding:16px;
+#qualityList{
+display:flex;
+flex-direction:column;
+gap:9px;
 }
 
-.quality-title{
+.quality-item{
+background:#172235;
+border:1px solid #26354b;
+border-radius:13px;
+padding:13px 16px;
 font-size:15px;
 font-weight:600;
-margin-bottom:12px;
+color:#e5e7eb;
+display:flex;
+align-items:center;
+justify-content:space-between;
+cursor:pointer;
+transition:.2s;
+}
+
+.quality-item::after{
+content:"›";
+font-size:20px;
+line-height:10px;
+color:#64748b;
+}
+
+.quality-item:hover{
+background:#2563eb;
+border-color:#3b82f6;
+color:#fff;
+transform:translateY(-1px);
+}
+
+.quality-item:hover::after{
 color:#fff;
 }
 
-.quality-buttons{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
-
-.quality-btn{
+#qualityModal .btn{
+width:100%;
+margin-top:16px;
 background:#1f2937;
+color:#cbd5e1;
 border:1px solid #334155;
-color:#e5e7eb;
-padding:10px 18px;
 border-radius:12px;
-font-size:14px;
+padding:11px;
+font-size:13px;
 font-weight:600;
 cursor:pointer;
 transition:.2s;
 }
 
-.quality-btn:hover{
-background:#2563eb;
-border-color:#2563eb;
-}
-
-.quality-btn.active{
-background:#2563eb;
-border-color:#60a5fa;
+#qualityModal .btn:hover{
+background:#ef4444;
+border-color:#ef4444;
 color:#fff;
-box-shadow:0 0 15px rgba(37,99,235,.3);
 }
 
-.quality-btn.auto{
-background:#334155;
-}
-
-.stream-status{
-font-size:12px;
-color:#9ca3af;
-margin-top:12px;
-}
-
-/* =========================
-LOADING
-========================= */
-
-#playerLoading{
-position:absolute;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-background:rgba(0,0,0,.45);
-z-index:2;
-}
-
-#playerLoading.hidden{
-display:none;
-}
-
-.loader{
-width:42px;
-height:42px;
-border:4px solid rgba(255,255,255,.2);
-border-top-color:#2563eb;
-border-radius:50%;
-animation:spin .8s linear infinite;
-}
-
-@keyframes spin{
-to{
-transform:rotate(360deg);
-}
-}
-
-/* =========================
-TELEGRAM POPUP
-========================= */
+/* ================= TELEGRAM POPUP ================= */
 
 #tgOverlay{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.85);
-backdrop-filter:blur(16px);
--webkit-backdrop-filter:blur(16px);
+background:rgba(0,0,0,.86);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
 display:none;
 align-items:center;
 justify-content:center;
 z-index:999999;
 padding:20px;
+animation:fadeInPopup .35s ease;
 }
 
 #tgOverlay.show{
@@ -433,137 +435,196 @@ display:flex;
 #tgCard{
 width:100%;
 max-width:400px;
-background:linear-gradient(160deg,#121821,#0a0c0f);
+background:
+linear-gradient(
+160deg,
+#121a27,
+#080d15
+);
 border:1px solid rgba(79,195,247,.15);
-border-radius:24px;
-padding:36px 28px 28px;
-box-shadow:0 40px 80px rgba(0,0,0,.8);
+border-radius:25px;
+padding:32px 26px 26px;
+box-shadow:
+0 40px 90px rgba(0,0,0,.8),
+0 0 60px rgba(79,195,247,.04);
 text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+#tgCard::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:radial-gradient(
+circle at 30% 20%,
+rgba(79,195,247,.06),
+transparent 55%
+);
+pointer-events:none;
 }
 
 #tgIcon{
-width:72px;
-height:72px;
-margin:0 auto 16px;
+width:68px;
+height:68px;
+margin:0 auto 17px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-background:linear-gradient(135deg,#2AABEE,#229ED9);
+background:linear-gradient(135deg,#2aabee,#229ed9);
+box-shadow:
+0 0 35px rgba(42,171,238,.2);
+position:relative;
+z-index:1;
 }
 
 #tgIcon svg{
-width:36px;
-height:36px;
+width:34px;
+height:34px;
 }
 
 #tgCard h2{
 margin:0 0 8px;
-font-size:1.6rem;
+font-size:1.45rem;
 font-weight:700;
 color:#fff;
+position:relative;
+z-index:1;
 }
 
 #tgCard p{
-margin:0 0 24px;
-color:#8e9baf;
-font-size:.95rem;
+margin:0 0 22px;
+color:#8491a5;
+font-size:.9rem;
 line-height:1.6;
+position:relative;
+z-index:1;
 }
 
 .tgBtns{
 display:flex;
-gap:12px;
+gap:10px;
+position:relative;
+z-index:1;
 }
 
 .tgBtn{
 flex:1;
-height:48px;
-border-radius:40px;
+height:47px;
+border-radius:13px;
 font-weight:700;
+font-size:.85rem;
 cursor:pointer;
-border:none;
+transition:.25s;
+font-family:'Poppins',sans-serif;
 }
 
 #joinNow{
 background:linear-gradient(135deg,#4fc3f7,#2196f3);
 color:#fff;
+border:none;
+box-shadow:0 7px 25px rgba(79,195,247,.2);
+}
+
+#joinNow:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 30px rgba(79,195,247,.3);
 }
 
 #joinedBtn{
-background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.04);
 color:#8e9baf;
 border:1px solid rgba(255,255,255,.08);
 }
 
-/* =========================
-MOBILE
-========================= */
-
-@media(max-width:900px){
-
-#matches-container{
-grid-template-columns:repeat(2,1fr);
+#joinedBtn:hover{
+background:rgba(255,255,255,.08);
+color:#fff;
 }
 
+/* ================= ANIMATIONS ================= */
+
+@keyframes liveBlink{
+0%,100%{
+opacity:1;
+}
+50%{
+opacity:.45;
+}
 }
 
-@media(max-width:600px){
+@keyframes pulseDot{
+0%,100%{
+transform:scale(1);
+opacity:1;
+}
+50%{
+transform:scale(.7);
+opacity:.6;
+}
+}
+
+@keyframes fadeInPopup{
+from{
+opacity:0;
+transform:scale(.95) translateY(12px);
+}
+to{
+opacity:1;
+transform:scale(1) translateY(0);
+}
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:640px){
 
 body{
-padding:16px!important;
+padding:0 14px;
 }
 
-.brand span{
-font-size:24px;
+.header{
+padding-top:25px;
+padding-bottom:20px;
 }
 
-#matches-container{
-grid-template-columns:1fr;
-gap:22px;
+.logo-box{
+padding:11px 19px;
+border-radius:15px;
+}
+
+.logo-text{
+font-size:1.25rem;
 }
 
 .img-wrapper{
-height:200px;
+height:195px;
 }
 
-.player-area{
-padding:10px;
+.match-content{
+padding:17px;
 }
 
-.player-header{
-height:56px;
-padding:0 10px;
+.match-title{
+font-size:16px;
 }
 
-.player-title{
-font-size:14px;
+.watch-btn{
+padding:11px;
+font-size:12px;
 }
 
-.video-box{
-border-radius:10px;
-}
-
-#videoPlayer{
-min-height:200px;
-}
-
-.quality-panel{
-border-radius:14px;
-padding:13px;
-}
-
-.quality-buttons{
-gap:8px;
-}
-
-.quality-btn{
-padding:9px 13px;
-font-size:13px;
+#qualityModal .modal-content{
+padding:21px 18px;
 }
 
 #tgCard{
-padding:24px 18px 20px;
+padding:25px 18px 20px;
+border-radius:21px;
 }
 
 #tgIcon{
@@ -571,8 +632,23 @@ width:60px;
 height:60px;
 }
 
+#tgIcon svg{
+width:30px;
+height:30px;
+}
+
 #tgCard h2{
 font-size:1.2rem;
+}
+
+#tgCard p{
+font-size:.82rem;
+margin-bottom:18px;
+}
+
+.tgBtn{
+height:43px;
+font-size:.78rem;
 }
 
 }
@@ -580,26 +656,27 @@ font-size:1.2rem;
 </style>
 </head>
 
+<body>
 
-<body class="p-5 max-w-7xl mx-auto">
+<!-- HEADER -->
 
+<header class="header">
 
-<!-- =========================
-HEADER
-========================= -->
+<div class="logo-box">
 
-<div class="header">
+<span class="logo-dot"></span>
 
-<div class="brand">
-<span>@Cricmatchstream</span>
+<span class="logo-text">
+@Cricmatchstream
+</span>
+
 </div>
 
 <div class="subtitle">
 FANCODE LIVE WEB
 </div>
 
-
-<!-- TELEGRAM ONLY -->
+<!-- TELEGRAM -->
 
 <div class="social-links">
 
@@ -607,10 +684,11 @@ FANCODE LIVE WEB
 href="https://t.me/cricmatchstream"
 target="_blank"
 rel="noopener"
-class="social-link"
+class="social-link tg-link"
+title="@cricmatchstream"
 >
 
-<svg viewBox="0 0 24 24">
+<svg viewBox="0 0 24 24" fill="currentColor">
 
 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
 
@@ -622,95 +700,37 @@ class="social-link"
 
 </div>
 
-</div>
+</header>
 
 
-<!-- =========================
-MATCH LIST
-========================= -->
+<!-- MATCH GRID -->
 
 <div
-id="matches-container">
+id="matches-container"
+class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
 </div>
 
 
-<!-- =========================
-PLAYER
-========================= -->
+<!-- QUALITY SELECTION MODAL -->
 
-<div id="playerOverlay">
+<div id="qualityModal" class="hidden">
 
-<div class="player-header">
+<div class="modal-content">
 
-<button
-class="back-btn"
-onclick="closePlayer()"
-title="Back"
->
-<i class="fas fa-arrow-left"></i>
+<h2>Select Quality</h2>
+
+<div id="qualityList"></div>
+
+<button onclick="closeQuality()" class="btn">
+Close
 </button>
 
-<div
-class="player-title"
-id="playerTitle"
->
-FANCODE LIVE
 </div>
 
 </div>
 
 
-<div class="player-area">
-
-<div class="video-box">
-
-<video
-id="videoPlayer"
-controls
-playsinline
-webkit-playsinline
-preload="metadata"
-></video>
-
-<div id="playerLoading">
-
-<div class="loader"></div>
-
-</div>
-
-</div>
-
-
-<!-- QUALITY INSIDE PLAYER -->
-
-<div class="quality-panel">
-
-<div class="quality-title">
-<i class="fas fa-sliders-h"></i>
-&nbsp; Quality
-</div>
-
-<div
-id="qualityButtons"
-class="quality-buttons">
-</div>
-
-<div
-id="streamStatus"
-class="stream-status">
-Select a quality while watching.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-TELEGRAM POPUP
-========================= -->
+<!-- TELEGRAM POPUP -->
 
 <div id="tgOverlay">
 
@@ -718,10 +738,7 @@ TELEGRAM POPUP
 
 <div id="tgIcon">
 
-<svg
-viewBox="0 0 24 24"
-fill="white"
->
+<svg viewBox="0 0 24 24" fill="white">
 
 <path d="M23.05 2.1L19.6 21.3c-.26 1.15-.94 1.43-1.9.9l-5.26-3.88-2.54 2.45c-.28.28-.52.52-1.06.52l.38-5.4L19.9 5.8c.46-.4-.1-.63-.72-.23L7.5 13.03l-5.24-1.64c-1.14-.36-1.16-1.14.24-1.68L21.6.9c.95-.36 1.78.23 1.45 1.2z"/>
 
@@ -729,9 +746,7 @@ fill="white"
 
 </div>
 
-<h2>
-Join @cricmatchstream
-</h2>
+<h2>Join @cricmatchstream</h2>
 
 <p>
 Get match links &amp; live updates delivered straight to your phone.
@@ -739,17 +754,11 @@ Get match links &amp; live updates delivered straight to your phone.
 
 <div class="tgBtns">
 
-<button
-class="tgBtn"
-id="joinedBtn"
->
+<button class="tgBtn" id="joinedBtn">
 Already Joined
 </button>
 
-<button
-class="tgBtn"
-id="joinNow"
->
+<button class="tgBtn" id="joinNow">
 Join Now
 </button>
 
@@ -762,79 +771,31 @@ Join Now
 
 <script>
 
-/* =====================================================
-DATA
-===================================================== */
-
 const DATA_URL =
 'https://raw.githubusercontent.com/kajju027/Fancode-Events-Json/refs/heads/main/fancode.json';
 
+const PLAYER_URL =
+'fc-play.html?data=';
 
 const container =
 document.getElementById("matches-container");
 
-
-const playerOverlay =
-document.getElementById("playerOverlay");
-
-
-const video =
-document.getElementById("videoPlayer");
-
-
-const qualityButtons =
-document.getElementById("qualityButtons");
-
-
-const playerTitle =
-document.getElementById("playerTitle");
-
-
-const playerLoading =
-document.getElementById("playerLoading");
-
-
-const streamStatus =
-document.getElementById("streamStatus");
-
-
 let allMatches = [];
 
-let currentStreams = {};
 
-let currentQuality = null;
-
-let hls = null;
-
-
-/* =====================================================
-LOAD MATCHES
-===================================================== */
+/* ================= LOAD MATCHES ================= */
 
 fetch(DATA_URL)
 
-.then(res => {
-
-if(!res.ok){
-
-throw new Error("Failed to load JSON");
-
-}
-
-return res.json();
-
-})
+.then(res => res.json())
 
 .then(data => {
 
-allMatches =
-data.matches || [];
+allMatches = data.matches || [];
 
 container.innerHTML = "";
 
-
-/* LIVE FIRST */
-
+const matches =
 allMatches.sort((a,b) => {
 
 const aLive =
@@ -848,11 +809,10 @@ return bLive - aLive;
 });
 
 
-allMatches.forEach((m,index) => {
+matches.forEach((m,index) => {
 
 const isLive =
 (m.status || "").toUpperCase() === "LIVE";
-
 
 const img =
 m.image ||
@@ -861,7 +821,6 @@ m.image ||
 
 const card =
 document.createElement("div");
-
 
 card.className =
 "match-tile";
@@ -887,23 +846,28 @@ isLive
 :
 
 '<span class="scheduled-badge"><i class="far fa-calendar"></i> SCHEDULED</span>'
+
 }
 
 </div>
 
 
-<div class="match-info">
+<div class="match-content">
 
-<div class="match-title">
-${m.title || "Match"}
-</div>
+<h3 class="match-title">
+${m.title || 'Match'}
+</h3>
 
 <div class="tournament">
-${m.tournament || ""}
+${m.tournament || ''}
 </div>
 
 <div class="match-time">
+
+<i class="far fa-clock"></i>
+
 ${formatDate(m.startTime)}
+
 </div>
 
 
@@ -915,8 +879,8 @@ isLive
 `
 
 <div
+onclick="openQuality(${index})"
 class="watch-btn"
-onclick="openPlayer(${index})"
 >
 
 <i class="fas fa-play"></i>
@@ -954,33 +918,20 @@ container.appendChild(card);
 
 })
 
+.catch(() => {
 
-.catch(error => {
+container.innerHTML =
 
-console.error(error);
-
-container.innerHTML = `
-
-<p class="text-center"
-style="grid-column:1/-1;color:#9ca3af;">
-
-Failed to load matches
-
-</p>
-
-`;
+"<p class='text-center col-span-full text-gray-500 py-10'>Failed to load matches</p>";
 
 });
 
 
-/* =====================================================
-DATE FORMAT
-===================================================== */
+/* ================= DATE FORMAT ================= */
 
 function formatDate(time){
 
 if(!time) return "";
-
 
 const parts =
 time.match(
@@ -991,7 +942,7 @@ time.match(
 if(parts){
 
 let [
-_,
+,
 hh,
 mm,
 ss,
@@ -1007,23 +958,17 @@ parseInt(hh,10);
 
 
 if(
-ampm.toUpperCase() === "PM" &&
+ampm.toUpperCase() === 'PM' &&
 hh < 12
-){
-
+)
 hh += 12;
-
-}
 
 
 if(
-ampm.toUpperCase() === "AM" &&
+ampm.toUpperCase() === 'AM' &&
 hh === 12
-){
-
+)
 hh = 0;
-
-}
 
 
 const d =
@@ -1054,11 +999,8 @@ const d =
 new Date(time);
 
 
-if(isNaN(d)){
-
+if(isNaN(d))
 return time;
-
-}
 
 
 return d.toLocaleString(
@@ -1074,11 +1016,9 @@ minute:"2-digit"
 }
 
 
-/* =====================================================
-OPEN PLAYER
-===================================================== */
+/* ================= QUALITY ================= */
 
-function openPlayer(index){
+function openQuality(index){
 
 const match =
 allMatches[index];
@@ -1102,512 +1042,116 @@ return;
 }
 
 
-/* SAVE STREAMS */
-
-currentStreams =
-streams;
+const list =
+document.getElementById("qualityList");
 
 
-/* TITLE */
+list.innerHTML = "";
 
-playerTitle.innerText =
-match.title || "FANCODE LIVE";
-
-
-/* OPEN PLAYER */
-
-playerOverlay.classList.add("show");
-
-
-document.body.style.overflow =
-"hidden";
-
-
-/* CREATE QUALITY BUTTONS */
-
-createQualityButtons();
-
-
-/* SELECT HIGHEST AVAILABLE */
 
 const order = [
-
-"1080p",
-"720p",
-"540p",
-"480p",
-"360p",
-"240p"
-
+'1080p',
+'720p',
+'540p',
+'480p',
+'360p',
+'240p'
 ];
 
 
-let firstQuality = null;
+const sortedKeys =
+Object.keys(streams).sort(
+(a,b) =>
+order.indexOf(b) -
+order.indexOf(a)
+);
 
 
-for(
-const q of order
-){
-
-if(currentStreams[q]){
-
-firstQuality = q;
-
-break;
-
-}
-
-}
-
-
-/* FALLBACK */
-
-if(!firstQuality){
-
-firstQuality =
-Object.keys(currentStreams)[0];
-
-}
-
-
-/* START */
-
-if(firstQuality){
-
-loadQuality(firstQuality);
-
-}
-
-}
-
-
-/* =====================================================
-CREATE QUALITY BUTTONS
-===================================================== */
-
-function createQualityButtons(){
-
-qualityButtons.innerHTML = "";
-
-
-/* QUALITY ORDER */
-
-const order = [
-
-"1080p",
-"720p",
-"540p",
-"480p",
-"360p",
-"240p"
-
-];
-
-
-const available =
-Object.keys(currentStreams);
-
-
-/* SORT */
-
-const sorted =
-available.sort((a,b) => {
-
-const ai =
-order.indexOf(a);
-
-const bi =
-order.indexOf(b);
-
-if(ai === -1 && bi === -1){
-
-return 0;
-
-}
-
-if(ai === -1){
-
-return 1;
-
-}
-
-if(bi === -1){
-
-return -1;
-
-}
-
-return ai - bi;
-
-});
-
-
-/* CREATE */
-
-sorted.forEach(quality => {
+sortedKeys.forEach(q => {
 
 const btn =
-document.createElement("button");
+document.createElement("div");
 
 
 btn.className =
-"quality-btn";
+"quality-item";
 
 
 btn.innerText =
-quality;
+q;
 
 
 btn.onclick =
 function(){
 
-loadQuality(quality);
+const encoded =
+btoa(streams[q]);
+
+
+window.location.href =
+PLAYER_URL +
+encodeURIComponent(encoded);
 
 };
 
 
-qualityButtons.appendChild(btn);
+list.appendChild(btn);
 
 });
 
-}
-
-
-/* =====================================================
-LOAD QUALITY
-===================================================== */
-
-function loadQuality(quality){
-
-const streamURL =
-currentStreams[quality];
-
-
-if(!streamURL){
-
-return;
-
-}
-
-
-currentQuality =
-quality;
-
-
-/* ACTIVE BUTTON */
 
 document
-.querySelectorAll(".quality-btn")
-.forEach(btn => {
-
-btn.classList.remove("active");
-
-if(btn.innerText === quality){
-
-btn.classList.add("active");
-
-}
-
-});
-
-
-streamStatus.innerText =
-"Loading " + quality + " stream...";
-
-
-playerLoading.classList.remove("hidden");
-
-
-/* SAVE CURRENT TIME */
-
-const currentTime =
-video.currentTime || 0;
-
-
-const wasPlaying =
-!video.paused;
-
-
-/* DESTROY OLD HLS */
-
-if(hls){
-
-try{
-
-hls.destroy();
-
-}catch(e){}
-
-hls = null;
+.getElementById("qualityModal")
+.classList
+.remove("hidden");
 
 }
 
 
-/* RESET */
+function closeQuality(){
 
-video.pause();
-
-video.removeAttribute("src");
-
-video.load();
-
-
-/* =========================
-HLS.JS
-========================= */
-
-if(
-window.Hls &&
-Hls.isSupported()
-){
-
-hls =
-new Hls({
-
-enableWorker:true,
-
-lowLatencyMode:true,
-
-backBufferLength:30,
-
-maxBufferLength:30
-
-});
-
-
-hls.loadSource(streamURL);
-
-hls.attachMedia(video);
-
-
-hls.on(
-Hls.Events.MANIFEST_PARSED,
-function(){
-
-playerLoading.classList.add("hidden");
-
-streamStatus.innerText =
-"Playing " + quality;
-
-
-try{
-
-video.currentTime =
-currentTime;
-
-}catch(e){}
-
-
-if(wasPlaying){
-
-video.play().catch(()=>{});
-
-}
-
-});
-
-
-hls.on(
-Hls.Events.ERROR,
-function(event,data){
-
-console.error(
-"HLS error:",
-data
-);
-
-if(data.fatal){
-
-playerLoading.classList.add("hidden");
-
-streamStatus.innerText =
-"Stream error on " + quality;
-
-}
-
-});
+document
+.getElementById("qualityModal")
+.classList
+.add("hidden");
 
 }
 
 
-/* =========================
-NATIVE HLS
-========================= */
-
-else if(
-video.canPlayType(
-"application/vnd.apple.mpegurl"
-)
-){
-
-video.src =
-streamURL;
-
-
-video.addEventListener(
-"loadedmetadata",
-function(){
-
-playerLoading.classList.add("hidden");
-
-streamStatus.innerText =
-"Playing " + quality;
-
-
-try{
-
-video.currentTime =
-currentTime;
-
-}catch(e){}
-
-
-if(wasPlaying){
-
-video.play().catch(()=>{});
-
-}
-
-},
-{once:true}
-);
-
-}
-
-
-/* =========================
-DIRECT VIDEO
-========================= */
-
-else{
-
-video.src =
-streamURL;
-
-
-video.addEventListener(
-"loadedmetadata",
-function(){
-
-playerLoading.classList.add("hidden");
-
-streamStatus.innerText =
-"Playing " + quality;
-
-
-if(wasPlaying){
-
-video.play().catch(()=>{});
-
-}
-
-},
-{once:true}
-);
-
-}
-
-}
-
-
-/* =====================================================
-CLOSE PLAYER
-===================================================== */
-
-function closePlayer(){
-
-if(hls){
-
-try{
-
-hls.destroy();
-
-}catch(e){}
-
-hls = null;
-
-}
-
-
-video.pause();
-
-video.removeAttribute("src");
-
-video.load();
-
-
-playerOverlay.classList.remove("show");
-
-
-document.body.style.overflow =
-"";
-
-
-currentStreams = {};
-
-currentQuality = null;
-
-qualityButtons.innerHTML = "";
-
-}
-
-
-/* =====================================================
-ESCAPE PLAYER
-===================================================== */
-
-document.addEventListener(
-"keydown",
-function(e){
-
-if(
-e.key === "Escape" &&
-playerOverlay.classList.contains("show")
-){
-
-closePlayer();
-
-}
-
-});
-
-
-/* =====================================================
-TELEGRAM POPUP
-===================================================== */
+/* ================= TELEGRAM POPUP ================= */
 
 (function(){
 
 const tgOverlay =
-document.getElementById("tgOverlay");
+document.getElementById('tgOverlay');
 
 
 function closePopup(){
 
-tgOverlay.classList.remove("show");
+tgOverlay.classList.remove('show');
 
 }
 
 
-/* SHOW AFTER 3 SECONDS */
+/* Show popup after 3 seconds */
 
 setTimeout(function(){
 
-tgOverlay.classList.add("show");
+tgOverlay.classList.add('show');
 
 },3000);
 
 
-/* JOIN NOW */
+/* Join Now */
 
 document
-.getElementById("joinNow")
+.getElementById('joinNow')
 .onclick =
 function(){
 
 window.open(
-"https://t.me/cricmatchstream",
-"_blank"
+'https://t.me/cricmatchstream',
+'_blank'
 );
 
 closePopup();
@@ -1615,10 +1159,10 @@ closePopup();
 };
 
 
-/* ALREADY JOINED */
+/* Already Joined */
 
 document
-.getElementById("joinedBtn")
+.getElementById('joinedBtn')
 .onclick =
 function(){
 
@@ -1627,10 +1171,10 @@ closePopup();
 };
 
 
-/* BACKDROP */
+/* Click backdrop */
 
 tgOverlay.addEventListener(
-"click",
+'click',
 function(e){
 
 if(e.target === tgOverlay){
@@ -1639,19 +1183,31 @@ closePopup();
 
 }
 
-});
+}
+);
 
 
 /* ESC */
 
 document.addEventListener(
-"keydown",
+'keydown',
 function(e){
 
 if(
-e.key === "Escape" &&
-tgOverlay.classList.contains("show")
+e.key === 'Escape' &&
+tgOverlay.classList.contains('show')
 ){
 
 closePopup();
- 
+
+}
+
+}
+);
+
+})();
+
+</script>
+
+</body>
+</html>
